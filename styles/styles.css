@@ -1,0 +1,8 @@
+#board {
+	display: grid;
+	grid-template-columns: repeat(3, 100px);
+	gap: 0.5rem;
+}
+#board button {
+	height: 100px;
+}
