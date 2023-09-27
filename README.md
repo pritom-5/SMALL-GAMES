@@ -21,3 +21,9 @@
 -   Typescript
 -   CSS
 -   HTML
+
+### How to run
+
+-   clone the repo to the local repo
+-   run `pnpm install` install all the dependencies
+-   run `pnpm run dev` to spin dev server
