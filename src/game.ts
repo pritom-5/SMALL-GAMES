@@ -4,10 +4,12 @@ interface iGame {
 
 type tGameBoard = (1 | 2 | 0)[][];
 type tCurrentPlayer = 1 | 2;
+type tScore = { 1: number; 2: number; 0: number };
 
 class Game {
 	GAME_BOARD: tGameBoard;
 	CURRENT_PLAYER: tCurrentPlayer = 1;
+	SCORE: tScore;
 
 	constructor() {
 		this.GAME_BOARD = [
@@ -16,9 +18,9 @@ class Game {
 			[0, 0, 0],
 		];
 		this.CURRENT_PLAYER = 1;
+		this.SCORE = { 1: 0, 2: 0, 0: 0 };
 	}
 
-	// update the player last after checking gamelogic, updading board
 	updateCurrentPlayer() {
 		this.CURRENT_PLAYER = this.CURRENT_PLAYER === 1 ? 2 : 1;
 	}
@@ -31,7 +33,6 @@ class Game {
 		this.GAME_BOARD[board_row][board_col] = this.CURRENT_PLAYER;
 	}
 
-	// @todo: cross logicisWinner and up and down logic
 	isWinner() {
 		if (
 			(this.GAME_BOARD[0][0] === this.CURRENT_PLAYER &&
@@ -54,7 +55,7 @@ class Game {
 				this.GAME_BOARD[1][2] === this.GAME_BOARD[2][2]) ||
 			(this.GAME_BOARD[0][0] === this.CURRENT_PLAYER &&
 				this.GAME_BOARD[0][0] === this.GAME_BOARD[1][1] &&
-				this.GAME_BOARD[1][1] === this.GAME_BOARD[2][1]) ||
+				this.GAME_BOARD[1][1] === this.GAME_BOARD[2][2]) ||
 			(this.GAME_BOARD[0][2] === this.CURRENT_PLAYER &&
 				this.GAME_BOARD[0][2] === this.GAME_BOARD[1][1] &&
 				this.GAME_BOARD[1][1] === this.GAME_BOARD[2][0])
@@ -79,12 +80,24 @@ class Game {
 
 	getWinner() {
 		if (this.isWinner()) {
+			this.SCORE[this.CURRENT_PLAYER] = ++this.SCORE[this.CURRENT_PLAYER];
 			return this.CURRENT_PLAYER;
 		} else if (this.isGameOver() && !this.isWinner()) {
+			this.SCORE[0] = ++this.SCORE[0];
 			return 0;
 		}
 
 		return undefined;
+	}
+
+	resetGame() {
+		this.GAME_BOARD = [
+			[0, 0, 0],
+			[0, 0, 0],
+			[0, 0, 0],
+		];
+
+		this.CURRENT_PLAYER = 1;
 	}
 }
 

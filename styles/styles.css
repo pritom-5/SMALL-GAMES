@@ -1,8 +1,71 @@
+button {
+	border: none;
+	outline: none;
+}
 #board {
 	display: grid;
 	grid-template-columns: repeat(3, 100px);
 	gap: 0.5rem;
 }
+#board {
+	margin-inline: auto;
+	max-width: fit-content;
+}
 #board button {
 	height: 100px;
+	background-color: #117d44;
+	border: 3px solid #e3e291;
+	border-radius: 0.25rem;
+}
+#board button:disabled {
+	background-color: transparent;
+	border: none;
+	opacity: 1;
+	color: inherit;
+	border: 3px solid #e3e291;
+}
+#show-score {
+	display: flex;
+	gap: 2rem;
+	justify-content: center;
+	margin-block: 2rem;
+}
+#show-score div {
+	background-color: #021402;
+	padding-right: 0.5rem;
+}
+#show-score span {
+	padding-inline: 2rem;
+}
+#current-turn {
+	font-size: 28px;
+	max-width: fit-content;
+	margin-inline: auto;
+	margin-block: 0.5rem;
+}
+.ji {
+	font-size: 36px;
+}
+body {
+	background: #0a3b0b;
+	color: #e3e291;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+dialog {
+	background-color: #0a3b0b;
+	color: #e3e291;
+	padding: 1rem 3rem;
+	border: none;
+}
+dialog::backdrop {
+	opacity: 0.8;
+	background-color: black;
+}
+dialog button {
+	padding: 0.5rem 1rem;
+	background-color: #117d44;
+	color: #e3e291;
 }
